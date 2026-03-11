@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Profil Acak</title>
+    
+    <style>
+        h2 {
+            color: #333;
+            font-family: poppins, sans-serif;
+            font-size: 40px;
+        }
+        body {
+            font-family: inter, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            background-color: #f4f4f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #wadah-profil {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            min-height: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Mengatur agar foto profil nanti menjadi bulat */
+        img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Pencari Profil Acak</h2>
+    
+    <button id="tombol-tarik">Tampilkan Pengguna Acak</button>
+
+    <div id="wadah-profil">
+        <p>Belum ada data. Klik tombol di atas!</p>
+    </div>
+
+    </body>
+</html>
