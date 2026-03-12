@@ -29,6 +29,8 @@ tombol.addEventListener('click', async function() {
         const foto = pengguna.picture.large;
         const namaLengkap = `${pengguna.name.first} ${pengguna.name.last}`;
         const email = pengguna.email;
+        const nomorTelepon = pengguna.phone; // Ini tambahan, bisa kamu tampilkan juga kalau mau
+        const lokasi = `${pengguna.location.city}, ${pengguna.location.country}`; // Ini juga tambahan
 
         // 5. Menyajikan data ke "meja makan" (Tampilkan ke layar)
         // Kita gunakan backtick (`) agar bisa memasukkan variabel ke dalam HTML dengan mudah
@@ -36,6 +38,8 @@ tombol.addEventListener('click', async function() {
             <img src="${foto}" alt="Foto Profil">
             <h3>${namaLengkap}</h3>
             <p>Email: ${email}</p>
+            <p>Telepon: ${nomorTelepon}</p>
+            <p>Lokasi: ${lokasi}</p>
         `;
 
     } catch (error) {
