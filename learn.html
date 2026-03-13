@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profil data</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+        .container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            justify-content: center;
+        }
+        .profil {
+            width: 200px;
+            height: 200px;
+            border-radius: 20%;
+            margin-bottom: 10px;
+        }
+        .tombol button {
+            background-color: #adadad;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .tombol button:hover {
+            color: #ffffff;
+            background-color: #427eff;
+        }
+        .container ul {
+            list-style-type: none;
+            text-align: justify;
+            align-items: center;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profil data</h1>
+        <img src="https://i.pravatar.cc/150?img=11" alt="Foto Profil" class="profil">
+        <ul>
+            <li>Nama    : Bambang</li>
+            <li>Umur    : 25 tahun</li>
+            <li>Alamat  : Jl. Merdeka No. 123</li>
+        </ul>
+        <div class="tombol">
+            <button>Ubah Profil</button>
+            <button class="tombol-hapus">Hapus Profil</button>
+        </div>
+    </div>
+</body>
+</html>

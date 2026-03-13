@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Profil Ahmad</title>
+
+    <style>
+        /* 1. FLEXBOX PERTAMA: Mengatur body agar isinya tepat di tengah layar */
+        body {
+            margin: 0;
+            background-color: #e4e9f2; /* Warna latar belakang abu-abu kebiruan */
+            min-height: 100vh; /* Tinggi minimal sama dengan layar penuh */
+            
+            /* Ini dia sihir Flexbox-nya: */
+            display: flex;
+            justify-content: center; /* Rata tengah horizontal (Kiri-Kanan) */
+            align-items: center;     /* Rata tengah vertikal (Atas-Bawah) */
+            
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 2. FLEXBOX KEDUA: Desain Kartu & Isinya berbaris ke bawah */
+        .kartu {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px; /* Membuat sudut kartu melengkung */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Efek bayangan elegan */
+            
+            /* Ingat rumus responsif kemarin? */
+            width: 90%; 
+            max-width: 350px; 
+            
+            /* Flexbox untuk mengatur isi di dalam kartu: */
+            display: flex;
+            flex-direction: column; /* Mengubah arah baris menjadi menurun (kolom) */
+            align-items: center;    /* Memastikan teks dan foto berada di tengah kartu */
+        }
+
+        /* Gaya untuk Foto Profil */
+        .foto-profil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Rumus ajaib membuat foto kotak menjadi bulat sempurna */
+            object-fit: cover;  /* Agar foto tidak gepeng */
+            border: 4px solid #3b82f6; /* Lingkaran biru di luar foto */
+        }
+
+        /* Gaya untuk Teks */
+        .nama {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #1f2937;
+        }
+
+        .pekerjaan {
+            margin-top: 0;
+            color: #6b7280; /* Warna teks abu-abu redup */
+            font-weight: 500;
+        }
+
+        /* 3. FLEXBOX KETIGA: Wadah untuk membuat tombol bersebelahan */
+        .wadah-tombol {
+            display: flex;
+            gap: 15px; /* Jarak antar tombol */
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Gaya dasar untuk tombol */
+        button {
+            flex: 1; /* Membuat kedua tombol berbagi lebar yang sama */
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s; /* Efek mulus saat disentuh mouse */
+        }
+
+        .btn-utama {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .btn-sekunder {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        /* Efek hover (saat mouse berada di atas tombol) */
+        .btn-utama:hover { background-color: #2563eb; }
+        .btn-sekunder:hover { background-color: #e5e7eb; }
+
+    </style>
+</head>
+<body>
+
+    <div class="kartu">
+        
+        <img src="https://i.pravatar.cc/300?img=11" alt="Foto Profil" class="foto-profil">
+        
+        <h2 class="nama">Ahmad Software</h2>
+        <p class="pekerjaan">Calon Fullstack Developer</p>
+        
+        <div class="wadah-tombol">
+            <button class="btn-utama">Ikuti</button>
+            <button class="btn-sekunder">Pesan</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
