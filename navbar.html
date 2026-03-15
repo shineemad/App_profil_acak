@@ -1,0 +1,222 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Navbar Ahmad</title>
+        <style>
+            /* TULIS KODE CSS-MU DI BAWAH SINI */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0; /* Menghilangkan jarak putih di pinggir browser */
+                background-color: #f3f4f6;
+            }
+
+            /* 1. Atur .navbar di sini (Gunakan Flexbox space-between) */
+            .navbar {
+                background-color: #ffffff;
+                padding: 15px 40px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                /* Panggil skenario animasinya di sini! */
+                animation: turunDariLangit 0.8s ease-out forwards; 
+            }
+            /* ANIMATION: Membuat skenario gerakan bernama "turunDariLangit" */
+            @keyframes turunDariLangit {
+                0% {
+                    transform: translateY(-100%); /* Posisi awal: Sembunyi di luar layar atas */
+                    opacity: 0; /* Tembus pandang */
+                }
+                100% {
+                    transform: translateY(0); /* Posisi akhir: Kembali ke posisi normal */
+                    opacity: 1; /* Terlihat jelas */
+                }
+            }
+
+            /* 2. Atur gaya huruf .logo di sini */
+            .logo {
+                font-size: 24px;
+                font-weight: bold;
+                color: #3b82f6;
+            }
+
+            /* 3. Atur .menu di sini (Gunakan Flexbox agar berbaris ke samping) */
+            .menu {
+                /* Tambahkan mesin Flexbox-mu di sini... */
+                display: flex;
+                gap: 20px; /* Jarak antar item menu */
+
+                padding: 0;
+                margin: 0;
+                list-style-type: none; /* Menghilangkan titik */
+            }
+
+            /* 4. Atur warna dan garis bawah tautan <a> di sini */
+            /* Gaya dasar teks menu */
+            .menu a {
+                text-decoration: none;
+                color: #333333;
+                font-weight: bold;
+                position: relative; /* SANGAT PENTING: Menjadi patokan letak garis bawah nanti */
+                padding-bottom: 5px; /* Memberi jarak antara teks dan garis bawah */
+                transition: color 0.3s ease; /* Transisi halus untuk warna teks */
+            }
+
+            .menu a:hover {
+                color: #3b82f6;
+            }
+
+            /* TRIK SENIOR: Membuat garis bawah gaib menggunakan ::after */
+            .menu a::after {
+                content: ''; /* Wajib ada, meskipun kosong */
+                position: absolute;
+                width: 0; /* Awalnya lebarnya 0 (tidak terlihat) */
+                height: 2px; /* Ketebalan garis */
+                bottom: 0;
+                left: 0;
+                background-color: #3b82f6; /* Warna biru */
+                transition: width 0.3s ease-in-out; /* Transisi yang bikin garisnya 'meluncur' */
+            }
+
+            /* Saat menu di-hover, paksa garis gaib tadi memanjang jadi 100% */
+            .menu a:hover::after {
+                width: 100%;
+            }
+    /* 📱 MEDIA QUERY: Khusus untuk layar HP (Lebar maksimal 600px) */
+            @media (max-width: 600px) {
+                .navbar {
+                    flex-direction: column; /* Ubah susunan navbar dari kiri-kanan menjadi atas-bawah */
+                    gap: 15px; /* Beri jarak antara logo dan menu */
+                    padding: 15px;
+                }
+
+                .menu {
+                    flex-direction: column; /* Ubah menu dari menyamping menjadi berbaris ke bawah */
+                    text-align: center; /* Rata tengah teksnya */
+                    width: 100%;
+                }
+
+                .menu li {
+                    padding: 10px 0; /* Beri area klik yang lebih luas untuk jari di layar sentuh */
+                    border-bottom: 1px solid #ddd; /* Garis pemisah antar menu */
+                }
+            }
+            /* --- GAYA UNTUK SECTION PORTOFOLIO --- */
+            .portofolio {
+                padding: 50px 40px;
+                text-align: center;
+            }
+
+            .judul-section {
+                font-size: 32px;
+                color: #1f2937;
+                margin-bottom: 40px;
+            }
+
+            /* WADAH UTAMA GRID (Tambahkan Mantra Grid di sini) */
+            .galeri-grid {
+                /* 1. Nyalakan mesin grid-nya: */
+                display: grid; 
+                
+                /* 2. Beri jarak antar kotak (atas-bawah & kiri-kanan) sebesar 20px: */
+                gap: 20px;
+                
+                /* 3. Gunakan mantra rahasia responsif (repeat, auto-fit, minmax) di sini: */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                /* TULIS KODEMU DI SINI... */
+                
+            }
+            
+            
+            /* GAYA KOTAK PROYEK */
+            .kartu-proyek {
+                background-color: white;
+                padding: 40px 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                font-weight: bold;
+                color: #3b82f6;
+                transition: 0.3s ease; /* Jembatan animasi saat di-hover */
+                animation: munculdarisamping 0.8s ease-out both; /* Panggil skenario animasi muncul dari samping */
+            }
+            .kartu-proyek:nth-child(1) { animation-delay: 0.1s; }
+            .kartu-proyek:nth-child(2) { animation-delay: 0.3s; }   
+            .kartu-proyek:nth-child(3) { animation-delay: 0.5s; }
+            .kartu-proyek:nth-child(4) { animation-delay: 0.7s; }
+            .kartu-proyek:nth-child(5) { animation-delay: 0.9s; }
+            .kartu-proyek:nth-child(6) { animation-delay: 1.1s; }
+            
+            @keyframes munculdarisamping {
+                0% {
+                    transform: translateX(-100%); /* Mulai dari luar layar sebelah kanan */
+                    opacity: 0; /* Tidak terlihat */
+                }
+                100% {
+                    transform: translateX(0); /* Kembali ke posisi normal */
+                    opacity: 1; /* Terlihat jelas */
+                }
+            }
+            
+            /* Efek hover (agak melayang ke atas seperti di Awwwards) */
+            .kartu-proyek:hover {
+                transform: translateY(-10px); /* Geser ke atas 10 pixel */
+                box-shadow: 0 15px 25px rgba(0,0,0,0.1); /* Bayangan lebih pekat */
+                background-color: #3b82f6;
+                color: white;
+            }
+            .dark-mode {
+                margin-top: 80px;
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
+                border-color: #000000;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                box-shadow: 2px 2px;
+            }
+            .dark-mode:hover {
+                background-color: #000000;
+                color:#dddddd;
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar">
+            <div class="logo">AhmadTech</div>
+            
+            <ul class="menu">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Tentang Saya</a></li>
+                <li><a href="#">Portofolio</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+        <section class="portofolio">
+            <h2 class="judul-section">Karya Terbaikku</h2>
+            
+            <div class="galeri-grid">
+                <div class="kartu-proyek">Proyek 1: Web E-Commerce</div>
+                <div class="kartu-proyek">Proyek 2: Aplikasi Kasir</div>
+                <div class="kartu-proyek">Proyek 3: Landing Page Agensi</div>
+                <div class="kartu-proyek">Proyek 4: Sistem Inventaris</div>
+                <div class="kartu-proyek">Proyek 5: Web Portofolio 3D</div>
+                <div class="kartu-proyek">Proyek 6: Dashboard Admin</div>
+            </div>
+            <button class="dark-mode">Mode Gelap</button>
+        </section>
+        <script>
+            const darkModeButton = document.querySelector('.dark-mode');
+            const body = document.body;
+
+            darkModeButton.addEventListener('click', () => {
+                body.classList.toggle('dark-mode-active');
+            });
+        </script>
+    </body>
+    </html>
