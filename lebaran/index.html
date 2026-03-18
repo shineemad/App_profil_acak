@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Raya Idul Fitri</title>
+    <meta name="description" content="Pesan ucapan lebaran interaktif dari Ahmad Riyadi. Mohon Maaf Lahir dan Batin." />
+
+    <meta property="og:title" content="Selamat Idul Fitri 1 Syawal 1447 H" />
+    <meta property="og:description" content="Taqabbalallahu minna wa minkum. Mohon Maaf Lahir dan Batin dari Ahmad Riyadi." />
+    <meta property="og:image" content="https://ucapan-lebaran-kamu.netlify.app/thumbnail.png" />
+    <meta property="og:url" content="https://ucapan-lebaran-kamu.netlify.app" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Selamat Idul Fitri 1 Syawal 1447 H">
+    <meta name="twitter:description" content="Pesan ucapan lebaran interaktif dari Ahmad Riyadi.">
+    <meta name="twitter:image" content="https://ucapan-lebaran-kamu.netlify.app/thumbnail.jpg">
+
+    <meta name="theme-color" content="#0f4c3a">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 0; /* Tambahkan padding agar kartu tidak terlalu mepet atas/bawah layar HP */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #0f4c3a 0%, #03150f 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden; /* Kunci scroll kiri-kanan agar animasi rapi */
+            overflow-y: auto; /* Buka scroll atas-bawah untuk HP berlayar kecil */
+            perspective: 1000px;
+        }
+
+        /* --- Animasi Lampion --- */
+        .lantern {
+            position: absolute;
+            top: -10px;
+            font-size: 3em;
+            transform-origin: top center;
+            animation: swing 3s ease-in-out infinite alternate;
+            z-index: 0;
+            filter: drop-shadow(0px 10px 15px rgba(255, 215, 0, 0.5));
+        }
+        .lantern.left { left: 15%; animation-delay: 0.5s; }
+        .lantern.right { right: 15%; animation-delay: 0s; }
+
+        @keyframes swing {
+            0% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+
+        /* --- Layar Pembuka (Cover) --- */
+        #cover {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #03150f;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .btn-buka {
+            background: linear-gradient(45deg, #ffd700, #ffaa00);
+            color: #03150f;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: pulse 1.5s infinite;
+            transition: transform 0.3s;
+        }
+
+        .btn-buka:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        /* --- Kartu Utama --- */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-top: 1px solid rgba(255, 215, 0, 0.5);
+            border-left: 1px solid rgba(255, 215, 0, 0.5);
+            max-width: 90%;
+            width: 450px;
+            opacity: 0;
+            transform: scale(0.5) translateY(50px);
+            transition: all 0.1s ease-out; /* Untuk tilt JS */
+            z-index: 10;
+        }
+
+        .card.show {
+            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Amiri', serif;
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 1.1em;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #a8d5c2;
+        }
+
+        p {
+            font-size: 0.95em;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #eaeaea;
+        }
+
+        span.arabic {
+            font-family: 'Amiri', serif;
+            color: #fff;
+            font-size: 2.2em;
+            line-height: 1.8;
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: glowText 2s infinite alternate;
+        }
+
+        @keyframes glowText {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #ffd700; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #ffd700, 0 0 30px #ffd700; }
+        }
+
+        .sender {
+            font-weight: 600;
+            color: #ffd700;
+            margin-top: 20px;
+            font-size: 1.2em;
+            border-top: 1px dashed rgba(255, 215, 0, 0.3);
+            padding-top: 15px;
+        }
+
+        /* --- Bintang Jatuh --- */
+        .falling-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+        .falling-item {
+            position: absolute; top: -10%; animation: fall linear infinite; opacity: 0.8;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="Original-Eid-Takbir-In-Masjid-Al-Haram-Beautiful.mp3" type="audio/mpeg">
+        </audio>
+
+    <div id="cover">
+        <h1 style="font-family: 'Poppins', sans-serif; font-size: 1.5em; color: #fff; margin-bottom: 30px;">Ada pesan untukmu...</h1>
+        <button class="btn-buka" onclick="bukaUcapan()">Buka Ucapan ✉️</button>
+    </div>
+
+    <div class="lantern left">🏮</div>
+    <div class="lantern right">🏮</div>
+
+    <div class="falling-container">
+        <div class="falling-item" style="left: 10%; animation-duration: 5s; animation-delay: 0s; font-size: 1.5em;">✨</div>
+        <div class="falling-item" style="left: 25%; animation-duration: 7s; animation-delay: 2s; font-size: 2em;">🌙</div>
+        <div class="falling-item" style="left: 45%; animation-duration: 6s; animation-delay: 1s; font-size: 1.2em;">⭐</div>
+        <div class="falling-item" style="left: 65%; animation-duration: 8s; animation-delay: 3s; font-size: 1.8em;">🌟</div>
+        <div class="falling-item" style="left: 85%; animation-duration: 4s; animation-delay: 0.5s; font-size: 1.5em;">✨</div>
+        <div class="falling-item" style="left: 15%; animation-duration: 9s; animation-delay: 4s; font-size: 1.2em;">⭐</div>
+        <div class="falling-item" style="left: 75%; animation-duration: 6.5s; animation-delay: 2.5s; font-size: 2.2em;">🌙</div>
+        <div class="falling-item" style="left: 55%; animation-duration: 5.5s; animation-delay: 1.5s; font-size: 1.5em;">🌟</div>
+    </div>
+
+    <div class="card" id="mainCard">
+        <div style="font-size: 2.5em; margin-bottom: 10px;">🕌</div>
+        <h1>Selamat Idul Fitri</h1>
+        <h2>1 SYAWAL 1447 H</h2>
+        
+        <span class="arabic">تَقَبَّلَ ٱللّٰهُ مِنَّا وَمِنكُمْ<br>مِنَ الْعَائِدِيْنَ وَالْفَائِزِيْنَ</span>
+        
+        <p>Mohon maaf lahir dan batin atas segala khilaf dan salah. Semoga Allah SWT mengampuni dosa kita dan menjadikan kita hamba yang kembali suci.</p>
+        
+        <div class="sender">
+            Salam hangat,<br>
+            Ahmad Riyadi
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk membuka kartu dan memutar musik
+        function bukaUcapan() {
+            // Sembunyikan cover
+            const cover = document.getElementById('cover');
+            cover.style.opacity = '0';
+            setTimeout(() => { cover.style.visibility = 'hidden'; }, 1000);
+
+            // Tampilkan kartu dengan animasi
+            const card = document.getElementById('mainCard');
+            card.classList.add('show');
+
+            // Putar musik latar
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.5; // Atur volume 50%
+            music.play().catch(error => console.log("Musik gagal diputar otomatis karena kebijakan browser."));
+        }
+
+        // Efek 3D Tilt saat mouse digerakkan di atas kartu (hanya terasa di Laptop/PC)
+        const card = document.getElementById('mainCard');
+        document.addEventListener('mousemove', (e) => {
+            if(!card.classList.contains('show')) return;
+            
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            // Batasi rotasi maksimal agar tidak berlebihan
+            xAxis = Math.max(-10, Math.min(10, xAxis));
+            yAxis = Math.max(-10, Math.min(10, yAxis));
+
+            card.style.transform = `scale(1) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Kembalikan posisi kartu saat mouse keluar dari layar
+        document.addEventListener('mouseleave', () => {
+            if(!card.classList.contains('show')) return;
+            card.style.transition = "all 0.5s ease";
+            card.style.transform = `scale(1) rotateY(0deg) rotateX(0deg)`;
+            setTimeout(() => { card.style.transition = "all 0.1s ease-out"; }, 500);
+        });
+    </script>
+</body>
+</html>

@@ -17,3 +17,4 @@ elif umur >= 18 and umur < 25:
 else:    print("kamu sedang bekerja atau sudah pensiun")
 
 
+
