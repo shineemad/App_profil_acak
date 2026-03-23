@@ -16,5 +16,12 @@ elif umur >= 18 and umur < 25:
     print("kamu masuk perguruan tinggi")
 else:    print("kamu sedang bekerja atau sudah pensiun")
 
+def hitung_luas_persegi(sisi):
+    luas = sisi * sisi
+    return luas
 
+sisi_persegi = input("Masukkan panjang sisi persegi: ")
+sisi_persegi = int(sisi_persegi)
+luas_persegi = hitung_luas_persegi(sisi_persegi)
+print("Luas persegi dengan sisi " + str(sisi_persegi) + " adalah " + str(luas_persegi))
 
