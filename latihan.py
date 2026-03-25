@@ -38,7 +38,7 @@ class Mobil:
             self.kecepatan -= kurangi_keceptan
             print(f"kecepatan sekarang:{self.kecepatan} km/h")
         else:
-            self.kecepatan = 0
+            self.kecepatan = 10
             print("mobil telah berhenti!")
 
     def info_Mobil(self):
