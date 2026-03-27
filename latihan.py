@@ -62,6 +62,6 @@ mobil_lama = Mobil("Toyota ", "Hitam", "cefat rusak", 2009)
 
 mobil_afri.info_Mobil()
 mobil_afri.nyalakan_mesin ()
-mobil_lama.gas(10)
+mobil_lama.gas(20)
 mobil_afri.rem(40)
 mobil_afri.matikan_mesin()
