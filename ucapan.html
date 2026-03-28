@@ -1,146 +1,488 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Selamat Hari Raya Idul Fitri</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap");
 
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f4c3a, #062b1f);
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            text-align: center;
-            overflow: hidden; /* Mencegah layar bisa di-scroll akibat animasi */
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f4c3a, #062b1f);
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        text-align: center;
+        overflow: hidden; /* Mencegah layar bisa di-scroll akibat animasi */
+      }
 
-        /* Container untuk efek jatuh */
-        .falling-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Agar tidak mengganggu klik pada card */
-            z-index: 0;
-        }
+      /* Container untuk efek jatuh */
+      .falling-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Agar tidak mengganggu klik pada card */
+        z-index: 0;
+      }
 
-        /* Elemen bintang dan bulan yang jatuh */
-        .falling-item {
-            position: absolute;
-            top: -10%;
-            animation: fall linear infinite;
-            opacity: 0.8;
-        }
+      /* Elemen bintang dan bulan yang jatuh */
+      .falling-item {
+        position: absolute;
+        top: -10%;
+        animation: fall linear infinite;
+        opacity: 0.8;
+      }
 
-        /* Animasi jatuh dari atas ke bawah sambil berputar sedikit */
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
+      /* Animasi jatuh dari atas ke bawah sambil berputar sedikit */
+      @keyframes fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
         }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            max-width: 90%;
-            width: 400px;
-            animation: fadeIn 1.5s ease-in-out;
-            position: relative;
-            z-index: 1; /* Memastikan card berada di atas efek bintang jatuh */
-        }
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        max-width: 90%;
+        width: 400px;
+        animation: fadeIn 1.5s ease-in-out;
+        position: relative;
+        z-index: 1; /* Memastikan card berada di atas efek bintang jatuh */
+      }
 
-        h1 {
-            font-family: 'Amiri', serif;
-            color: #ffd700;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+      h1 {
+        font-family: "Amiri", serif;
+        color: #ffd700;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
 
-        h2 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #e0e0e0;
-        }
+      h2 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #e0e0e0;
+      }
 
-        p {
-            font-size: 1em;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+      p {
+        font-size: 1em;
+        font-weight: 300;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
 
-        .sender {
-            font-weight: 600;
-            color: #ffd700;
-            margin-top: 20px;
-            font-size: 1.1em;
-        }
+      .sender {
+        font-weight: 600;
+        color: #ffd700;
+        margin-top: 20px;
+        font-size: 1.1em;
+      }
 
-        .ornament {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+      .ornament {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
 
-        span.arabic {
-            font-family: 'Amiri', serif;
-            color: #e0e0e0;
-            font-size: 2.1em;
-            line-height: 1.8;
-            display: block;
-            margin-bottom: 15px;
-        }
+      span.arabic {
+        font-family: "Amiri", serif;
+        color: #e0e0e0;
+        font-size: 2.1em;
+        line-height: 1.8;
+        display: block;
+        margin-bottom: 15px;
+      }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Day counter badge */
+      .day-badge {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        background: rgba(255, 215, 0, 0.15);
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 10px 16px;
+        text-align: center;
+        z-index: 10;
+        font-size: 0.75em;
+        color: #ffd700;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .day-badge .day-num {
+        font-size: 2em;
+        font-weight: 700;
+        display: block;
+        line-height: 1;
+      }
+
+      /* Copy button */
+      .btn-copy {
+        margin-top: 22px;
+        padding: 10px 26px;
+        background: linear-gradient(135deg, #ffd700, #e6ac00);
+        color: #062b1f;
+        border: none;
+        border-radius: 50px;
+        font-size: 0.95em;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-copy:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+      }
+      .btn-copy:active {
+        transform: scale(0.97);
+      }
+      .btn-copy.copied {
+        background: linear-gradient(135deg, #4caf50, #388e3c);
+        color: #fff;
+      }
+
+      /* Click hint */
+      .hint {
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.78em;
+        color: rgba(255, 255, 255, 0.45);
+        pointer-events: none;
+        animation: pulse 2.5s infinite;
+        z-index: 10;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+
+      /* Typewriter cursor */
+      .typewriter::after {
+        content: "|";
+        animation: blink 0.75s step-end infinite;
+        color: #ffd700;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="falling-container">
-        <div class="falling-item" style="left: 10%; animation-duration: 5s; animation-delay: 0s; font-size: 1.5em;">✨</div>
-        <div class="falling-item" style="left: 25%; animation-duration: 7s; animation-delay: 2s; font-size: 2em;">🌙</div>
-        <div class="falling-item" style="left: 45%; animation-duration: 6s; animation-delay: 1s; font-size: 1.2em;">⭐</div>
-        <div class="falling-item" style="left: 65%; animation-duration: 8s; animation-delay: 3s; font-size: 1.8em;">🌟</div>
-        <div class="falling-item" style="left: 85%; animation-duration: 4s; animation-delay: 0.5s; font-size: 1.5em;">✨</div>
-        <div class="falling-item" style="left: 15%; animation-duration: 9s; animation-delay: 4s; font-size: 1.2em;">⭐</div>
-        <div class="falling-item" style="left: 75%; animation-duration: 6.5s; animation-delay: 2.5s; font-size: 2.2em;">🌙</div>
-        <div class="falling-item" style="left: 55%; animation-duration: 5.5s; animation-delay: 1.5s; font-size: 1.5em;">🌟</div>
+      <div
+        class="falling-item"
+        style="
+          left: 10%;
+          animation-duration: 5s;
+          animation-delay: 0s;
+          font-size: 1.5em;
+        "
+      >
+        ✨
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 25%;
+          animation-duration: 7s;
+          animation-delay: 2s;
+          font-size: 2em;
+        "
+      >
+        🌙
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 45%;
+          animation-duration: 6s;
+          animation-delay: 1s;
+          font-size: 1.2em;
+        "
+      >
+        ⭐
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 65%;
+          animation-duration: 8s;
+          animation-delay: 3s;
+          font-size: 1.8em;
+        "
+      >
+        🌟
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 85%;
+          animation-duration: 4s;
+          animation-delay: 0.5s;
+          font-size: 1.5em;
+        "
+      >
+        ✨
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 15%;
+          animation-duration: 9s;
+          animation-delay: 4s;
+          font-size: 1.2em;
+        "
+      >
+        ⭐
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 75%;
+          animation-duration: 6.5s;
+          animation-delay: 2.5s;
+          font-size: 2.2em;
+        "
+      >
+        🌙
+      </div>
+      <div
+        class="falling-item"
+        style="
+          left: 55%;
+          animation-duration: 5.5s;
+          animation-delay: 1.5s;
+          font-size: 1.5em;
+        "
+      >
+        🌟
+      </div>
     </div>
+
+    <!-- Syawal day counter badge -->
+    <div class="day-badge">
+      <span class="day-num" id="syawalDay">-</span>
+      Syawal 1447 H
+    </div>
+
+    <!-- Click hint -->
+    <div class="hint">✨ Klik di mana saja untuk kembang api</div>
+
+    <!-- Fireworks canvas -->
+    <canvas id="fireworks"></canvas>
 
     <div class="card">
-        <div class="ornament">🕌✨</div>
-        <h1>Selamat Hari Raya<br> Idul Fitri</h1>
-        <h2>1 Syawal 1447 H</h2>
-        
-        <span class="arabic">تَقَبَّلَ ٱللّٰهُ مِنَّا وَمِنكُمْ<br>مِنَ الْعَائِدِيْنَ وَالْفَائِزِيْنَ</span>
-        
-        <p>Mohon maaf lahir dan batin atas segala khilaf dan salah, semoga kita kembali suci di hari yang fitri ini.</p>
-        
-        <div class="sender">
-            Salam hangat,<br>
-            Ahmad Riyadi
-        </div>
+      <div class="ornament">🕌✨</div>
+      <h1 id="mainTitle" class="typewriter"></h1>
+      <h2>1 Syawal 1447 H</h2>
+
+      <span class="arabic"
+        >تَقَبَّلَ ٱللّٰهُ مِنَّا وَمِنكُمْ<br />مِنَ الْعَائِدِيْنَ
+        وَالْفَائِزِيْنَ</span
+      >
+
+      <p>
+        Mohon maaf lahir dan batin atas segala khilaf dan salah, semoga kita
+        kembali suci di hari yang fitri ini.
+      </p>
+
+      <div class="sender">
+        Salam hangat,<br />
+        Ahmad Riyadi
+      </div>
+
+      <button class="btn-copy" id="copyBtn" onclick="copyUcapan()">
+        📋 Salin Ucapan
+      </button>
     </div>
 
-</body>
+    <script>
+      /* ─── Typewriter ─── */
+      const titleEl = document.getElementById("mainTitle");
+      const titleText = "Selamat Hari Raya Idul Fitri";
+      let ti = 0;
+      function typeWriter() {
+        if (ti < titleText.length) {
+          titleEl.textContent += titleText[ti++];
+          setTimeout(typeWriter, 70);
+        } else {
+          titleEl.classList.remove("typewriter");
+        }
+      }
+      setTimeout(typeWriter, 600);
+
+      /* ─── Syawal Day Counter ─── */
+      // 1 Syawal 1447H ≈ 30 Maret 2025
+      const eidDate = new Date("2025-03-30T00:00:00");
+      const diffDays = Math.floor((new Date() - eidDate) / 86400000) + 1;
+      document.getElementById("syawalDay").textContent = Math.max(
+        1,
+        Math.min(diffDays, 30),
+      );
+
+      /* ─── Fireworks Canvas ─── */
+      const canvas = document.getElementById("fireworks");
+      const ctx = canvas.getContext("2d");
+      canvas.style.cssText =
+        "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;";
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      const FW_COLORS = [
+        "#ffd700",
+        "#ff6b35",
+        "#ff9f1c",
+        "#e63946",
+        "#00b4d8",
+        "#4caf50",
+        "#e040fb",
+        "#ffffff",
+      ];
+
+      class Particle {
+        constructor(x, y, color) {
+          this.x = x;
+          this.y = y;
+          this.color = color;
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 7 + 1;
+          this.vx = Math.cos(angle) * speed;
+          this.vy = Math.sin(angle) * speed;
+          this.alpha = 1;
+          this.radius = Math.random() * 3 + 1;
+          this.trail = [];
+        }
+        update() {
+          this.trail.push({ x: this.x, y: this.y });
+          if (this.trail.length > 5) this.trail.shift();
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vy += 0.12;
+          this.vx *= 0.98;
+          this.alpha -= 0.018;
+        }
+        draw() {
+          this.trail.forEach((t, i) => {
+            ctx.save();
+            ctx.globalAlpha = (i / this.trail.length) * this.alpha * 0.4;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(t.x, t.y, this.radius * 0.6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          });
+          ctx.save();
+          ctx.globalAlpha = this.alpha;
+          ctx.fillStyle = this.color;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      let particles = [];
+
+      function burst(x, y) {
+        const c1 = FW_COLORS[Math.floor(Math.random() * FW_COLORS.length)];
+        const c2 = FW_COLORS[Math.floor(Math.random() * FW_COLORS.length)];
+        for (let i = 0; i < 90; i++) {
+          particles.push(new Particle(x, y, i % 3 === 0 ? c2 : c1));
+        }
+      }
+
+      function animateFireworks() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter((p) => p.alpha > 0);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateFireworks);
+      }
+      animateFireworks();
+
+      // Auto fireworks
+      setInterval(() => {
+        burst(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height * 0.6,
+        );
+      }, 900);
+      setTimeout(() => burst(canvas.width / 2, canvas.height * 0.3), 200);
+
+      // Click to burst
+      document.addEventListener("click", (e) => {
+        if (e.target.closest(".btn-copy")) return;
+        burst(e.clientX, e.clientY);
+      });
+
+      /* ─── Copy Ucapan ─── */
+      function copyUcapan() {
+        const text =
+          "🕌✨ Selamat Hari Raya Idul Fitri 1 Syawal 1447 H\n\n" +
+          "تَقَبَّلَ ٱللّٰهُ مِنَّا وَمِنكُمْ\nمِنَ الْعَائِدِيْنَ وَالْفَائِزِيْنَ\n\n" +
+          "Mohon maaf lahir dan batin atas segala khilaf dan salah, " +
+          "semoga kita kembali suci di hari yang fitri ini.\n\n" +
+          "Salam hangat,\nAhmad Riyadi";
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById("copyBtn");
+          btn.textContent = "✅ Tersalin!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerHTML = "📋 Salin Ucapan";
+            btn.classList.remove("copied");
+          }, 2500);
+        });
+      }
+    </script>
+  </body>
 </html>

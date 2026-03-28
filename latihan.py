@@ -65,3 +65,4 @@ mobil_afri.nyalakan_mesin ()
 mobil_lama.gas(20)
 mobil_afri.rem(40)
 mobil_afri.matikan_mesin()
+
