@@ -38,5 +38,5 @@ def awalGame():
     elif pilihan == "3":
         print("Terima kasih sudah bermain")
     
-    
+print("Selamat bermain " + nama_kamu)
         
