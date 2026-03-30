@@ -39,4 +39,5 @@ def awalGame():
         print("Terima kasih sudah bermain")
     
 print("Selamat bermain " + nama_kamu)
+print("Semoga kamu bisa menang dalam game ini")
         
