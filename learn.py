@@ -40,4 +40,34 @@ def awalGame():
     
 print("Selamat bermain " + nama_kamu)
 print("Semoga kamu bisa menang dalam game ini")
+
+print("mari kita bermain tebak angka")
+import random
+angka_rahasia = random.randint(1, 100)
+tebakan = 0
+keluar = input("Apakah kamu ingin keluar? (y/n): ")
+while tebakan != angka_rahasia:
+    tebakan = int(input("Masukkan tebakan kamu (1-100): "))
+    if tebakan < angka_rahasia:
+        print("Tebakan kamu terlalu rendah")
+    elif tebakan > angka_rahasia:
+        print("Tebakan kamu terlalu tinggi")
+    elif tebakan != angka_rahasia:
+        if keluar == "y":
+            print("Terima kasih sudah bermain, sampai jumpa lagi " + nama_kamu)
+        else:
+            print("Kamu memilih untuk melanjutkan bermain, semoga kamu bisa menang dalam game ini")
+    else:
+        print("Selamat! Tebakan kamu benar!")
+        
+point = 10
+
+if tebakan == angka_rahasia:
+    print("Kamu mendapatkan " + str(point) + " poin")
+elif tebakan != angka_rahasia:
+    print("Kamu mendapatkan " + str(point - 5) + " poin")
+else:
+    print("Kamu mendapatkan 0 poin")
+
+print("Terima kasih sudah bermain, sampai jumpa lagi " + nama_kamu)
         
