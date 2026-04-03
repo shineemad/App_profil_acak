@@ -16,28 +16,22 @@ elif umur >= 18 and umur < 25:
     print("kamu masuk perguruan tinggi")
 else:    print("kamu sedang bekerja atau sudah pensiun")
 
-def hitung_luas_persegi(sisi):
-    luas = sisi * sisi
-    return luas
-
-sisi_persegi = input("Masukkan panjang sisi persegi: ")
-sisi_persegi = int(sisi_persegi)
-luas_persegi = hitung_luas_persegi(sisi_persegi)
-print("Luas persegi dengan sisi " + str(sisi_persegi) + " adalah " + str(luas_persegi))
-
 print("Pilih game kamu")
-def awalGame():
-    print("1. Tebak Angka")
-    print("2. Tebak Kata")
-    print("3. Keluar")
-    pilihan = input("Masukkan pilihan kamu: ")
-    if pilihan == "1":
-        print("Kamu memilih Tebak Angka") 
-    elif pilihan == "2":
-        print("Kamu memilih Tebak Kata")
-    elif pilihan == "3":
-        print("Terima kasih sudah bermain")
-    
+print("1. hitung luas persegi")
+print("2. Tebak angka random")
+
+pilihan_game = input("Masukkan pilihan game kamu (1/2): ")
+
+if pilihan_game == "1":
+    def hitung_luas_persegi(sisi):
+        luas = sisi * sisi
+        return luas
+    sisi = input("Masukkan panjang sisi persegi: ")
+    sisi_persegi = int(sisi)
+    luas_persegi = hitung_luas_persegi(sisi_persegi)
+    print("Luas persegi dengan sisi " + str(sisi_persegi) + " adalah " + str(luas_persegi))
+
+
 print("Selamat bermain " + nama_kamu)
 print("Semoga kamu bisa menang dalam game ini")
 
