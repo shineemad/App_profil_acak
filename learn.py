@@ -54,7 +54,7 @@ while tebakan != angka_rahasia:
     else:
         print("Selamat! Tebakan kamu benar!")
         
-point = 10
+point = 100
 
 if tebakan == angka_rahasia:
     print("Kamu mendapatkan " + str(point) + " poin")
