@@ -16,7 +16,7 @@ for karakter, jumlah in sorted(buku_catatan.items(), key=lambda x: x[1], reverse
 print("\n--- TAHAP 2: SIMULASI BRUTE-FORCE (1-25) ---")
 # Mencoba memutar kunci mundur satu per satu
 for coba_kunci in range(1, 26):
-    hasil_dekripsi = ""
+    hasil_dekripsi = " "
     for karakter in teks_sandi:
         if karakter in daftar_abjad:
             # Rumus modulo 26 agar abjad berputar seperti roda
