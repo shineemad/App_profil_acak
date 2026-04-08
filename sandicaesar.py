@@ -1,4 +1,4 @@
-# Program Otomatisasi: Analisis Frekuensi dan Brute-Force
+# Analisis Frekuensi dan Brute-Force
 teks_sandi = "KHOOR ZRUOG"
 daftar_abjad = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
