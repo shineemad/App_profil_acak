@@ -1,50 +1,52 @@
-// 1. Menyiapkan "Alat Kerja" (Mengambil elemen dari HTML)
-const tombol = document.getElementById('tombol-tarik');
-const wadah = document.getElementById('wadah-profil');
+const tombol = document.getElementById("tombol-tarik");
+const wadah = document.getElementById("wadah-profil");
 
-// 2. Memberi perintah: "Kalau tombol diklik, jalankan fungsi ini"
-// Kita pakai 'async' karena kita butuh waktu untuk mengambil data dari internet
-tombol.addEventListener('click', async function() {
-    
-    // 3. Menampilkan Status Loading
-    wadah.innerHTML = '<p>Sedang memuat data...</p>';
+tombol.addEventListener("click", async function () {
+  tombol.disabled = true;
+  wadah.classList.remove("loaded");
+  wadah.innerHTML = `
+        <div class="loading-state">
+            <div class="loader-spin"></div>
+            Sedang memuat data...
+        </div>`;
 
-    // 4. Mulai mencoba mengambil data (Gunakan blok try...catch untuk jaga-jaga kalau error)
-    try {
-        // a. Pergi ke "dapur" API untuk minta data, lalu TUNGGU (await) sampai datanya datang
-        const respons = await fetch('https://randomuser.me/api/');
-        
-        // b. Kalau dapurnya tutup atau ada masalah server, lemparkan error!
-        if (!respons.ok) {
-            throw new Error('Server bermasalah!');
-        }
+  try {
+    const respons = await fetch("https://randomuser.me/api/");
+    if (!respons.ok) throw new Error("Server bermasalah!");
 
-        // c. Ubah paket data mentah dari dapur menjadi format JSON yang bisa dibaca JavaScript
-        const data = await respons.json();
-        
-        // d. Membongkar paket data (Mengambil orang pertama dari hasil pencarian)
-        const pengguna = data.results[0];
-        
-        // e. Mengekstrak 3 hal yang diminta senior: Foto, Nama, Email
-        const foto = pengguna.picture.large;
-        const namaLengkap = `${pengguna.name.first} ${pengguna.name.last}`;
-        const email = pengguna.email;
-        const nomorTelepon = pengguna.phone; // Ini tambahan, bisa kamu tampilkan juga kalau mau
-        const lokasi = `${pengguna.location.city}, ${pengguna.location.country}`; // Ini juga tambahan
+    const data = await respons.json();
+    const pengguna = data.results[0];
+    const foto = pengguna.picture.large;
+    const namaLengkap = `${pengguna.name.first} ${pengguna.name.last}`;
+    const email = pengguna.email;
+    const telepon = pengguna.phone;
+    const lokasi = `${pengguna.location.city}, ${pengguna.location.country}`;
 
-        // 5. Menyajikan data ke "meja makan" (Tampilkan ke layar)
-        // Kita gunakan backtick (`) agar bisa memasukkan variabel ke dalam HTML dengan mudah
-        wadah.innerHTML = `
-            <img src="${foto}" alt="Foto Profil">
-            <h3>${namaLengkap}</h3>
-            <p>Email: ${email}</p>
-            <p>Telepon: ${nomorTelepon}</p>
-            <p>Lokasi: ${lokasi}</p>
-        `;
-
-    } catch (error) {
-        // 6. Penanganan Eror (Kalau internet mati atau langkah 4 gagal)
-        wadah.innerHTML = '<p>Gagal mengambil data. Silakan coba lagi.</p>';
-        console.error("Detail error:", error); // Ini untuk membantumu melihat masalah di Inspect Element
-    }
+    wadah.innerHTML = `
+            <div style="width:100%">
+                <img class="profile-avatar" src="${foto}" alt="Foto Profil">
+                <div class="profile-name">${namaLengkap}</div>
+                <div class="profile-location">${lokasi}</div>
+                <div class="profile-divider"></div>
+                <div class="profile-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    ${email}
+                </div>
+                <div class="profile-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.55 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.46 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.43a16 16 0 0 0 5.66 5.66l1.79-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    ${telepon}
+                </div>
+            </div>`;
+  } catch (error) {
+    wadah.innerHTML = `
+            <div class="error-state">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;display:block;opacity:.6">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Gagal mengambil data. Silakan coba lagi.
+            </div>`;
+    console.error("Detail error:", error);
+  } finally {
+    tombol.disabled = false;
+  }
 });

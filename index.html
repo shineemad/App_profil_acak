@@ -1,67 +1,438 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Profil Acak</title>
-    
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AhmadTech - Random Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        h2 {
-            color: #333;
-            font-family: poppins, sans-serif;
-            font-size: 40px;
+      :root {
+        --bg: #090909;
+        --surface: #111;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f0f0f0;
+        --muted: #666;
+        --accent: #3b82f6;
+        --glow: rgba(59, 130, 246, 0.35);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Space Grotesk", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px;
+        cursor: none;
+        position: relative;
+        overflow-x: hidden;
+      }
+      /* CURSOR */
+      #c-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      #c-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid var(--accent);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.3s,
+          height 0.3s,
+          background 0.3s;
+      }
+      #c-ring.big {
+        width: 60px;
+        height: 60px;
+        background: var(--glow);
+        border-color: transparent;
+      }
+      /* BG GRID */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+        background-size: 52px 52px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      /* HEADER */
+      .page-header {
+        text-align: center;
+        margin-bottom: 48px;
+        position: relative;
+        z-index: 1;
+      }
+      .page-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 16px;
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        background: rgba(59, 130, 246, 0.08);
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(36px, 6vw, 72px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        color: var(--text);
+      }
+      h2 span {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .sub {
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-top: 16px;
+      }
+      /* BUTTON */
+      #tombol-tarik {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: none;
+        transition: all 0.3s ease;
+        margin-bottom: 40px;
+      }
+      #tombol-tarik:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 18px 40px var(--glow);
+      }
+      #tombol-tarik:disabled {
+        opacity: 0.6;
+        transform: none;
+        box-shadow: none;
+      }
+      /* PROFILE CARD */
+      #wadah-profil {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 440px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 40px;
+        text-align: center;
+        transition: border-color 0.3s ease;
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #wadah-profil.loaded {
+        border-color: rgba(59, 130, 246, 0.2);
+      }
+      .empty-state {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .empty-state svg {
+        margin: 0 auto 16px;
+        display: block;
+        opacity: 0.3;
+      }
+      /* PROFILE CONTENT */
+      .profile-avatar {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(59, 130, 246, 0.3);
+        margin: 0 auto 20px;
+        display: block;
+      }
+      .profile-name {
+        font-family: "Syne", sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .profile-location {
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .profile-divider {
+        width: 40px;
+        height: 1px;
+        background: var(--border);
+        margin: 20px auto;
+      }
+      .profile-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .profile-row svg {
+        flex-shrink: 0;
+      }
+      .loading-state {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .loader-spin {
+        width: 32px;
+        height: 32px;
+        border: 2px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
-        body {
-            font-family: inter, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            background-color: #f4f4f9;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #wadah-profil {
-            margin-top: 35px;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            text-align: center;
-            width: 90%;
-            max-width: 40px;
-            min-height: 20vh;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        /* Mengatur agar foto profil nanti menjadi bulat */
-        img {
-            border-radius: 50%;
-            width: 100px;
-            height: 88px;
-            object-fit: cover;
-        }
+      }
+      .error-state {
+        color: #f87171;
+        font-size: 14px;
+      }
+      /* SCROLLBAR */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 10px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="c-dot"></div>
+    <div id="c-ring"></div>
 
-    <h2>Pencari Profil Acak</h2>
-    
-    <button id="tombol-tarik">Tampilkan Pengguna Acak</button>
-
-    <div id="wadah-profil">
-        <p>Belum ada data. Klik tombol di atas!</p>
+    <div class="page-header">
+      <div class="page-tag">
+        <span
+          style="
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+          "
+        ></span>
+        Random Profile Finder
+      </div>
+      <h2>Pencari Profil<br /><span>Acak</span></h2>
+      <p class="sub">Temukan profil pengguna acak dari seluruh dunia</p>
     </div>
 
-    <script src= "script.js"></script>
-    </body>
+    <button id="tombol-tarik">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="17 8 12 3 7 8" />
+        <line x1="12" y1="3" x2="12" y2="15" />
+      </svg>
+      Tampilkan Pengguna Acak
+    </button>
+
+    <div id="wadah-profil">
+      <div class="empty-state">
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+        </svg>
+        Belum ada data. Klik tombol di atas!
+      </div>
+    </div>
+
+    <style>
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+
+    <script src="script.js"></script>
+    <script>
+      /* Custom cursor */
+      var dot = document.getElementById("c-dot"),
+        ring = document.getElementById("c-ring"),
+        mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", function (e) {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.cssText = "left:" + mx + "px;top:" + my + "px";
+      });
+      (function loop() {
+        rx += (mx - rx) * 0.11;
+        ry += (my - ry) * 0.11;
+        ring.style.cssText = "left:" + rx + "px;top:" + ry + "px";
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll("button,a").forEach(function (el) {
+        el.addEventListener("mouseenter", function () {
+          ring.classList.add("big");
+        });
+        el.addEventListener("mouseleave", function () {
+          ring.classList.remove("big");
+        });
+      });
+
+      /* Enhance profile display */
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.target === wadah && wadah.querySelector(".profile-name")) {
+            wadah.classList.add("loaded");
+            gsap.fromTo(
+              wadah,
+              { opacity: 0, y: 20, scale: 0.97 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" },
+            );
+            gsap.fromTo(
+              wadah.querySelector(".profile-avatar"),
+              { scale: 0, opacity: 0 },
+              {
+                scale: 1,
+                opacity: 1,
+                duration: 0.5,
+                delay: 0.1,
+                ease: "back.out(1.7)",
+              },
+            );
+            gsap.fromTo(
+              [
+                wadah.querySelector(".profile-name"),
+                wadah.querySelector(".profile-location"),
+              ],
+              { y: 15, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.08,
+                delay: 0.2,
+                ease: "power3.out",
+              },
+            );
+            gsap.fromTo(
+              wadah.querySelectorAll(".profile-row"),
+              { y: 10, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.06,
+                delay: 0.35,
+                ease: "power3.out",
+              },
+            );
+          }
+        });
+      });
+      observer.observe(wadah, { childList: true, subtree: true });
+
+      /* Header animation */
+      gsap.fromTo(
+        ".page-header",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      );
+      gsap.fromTo(
+        "#tombol-tarik",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.3, ease: "power3.out" },
+      );
+      gsap.fromTo(
+        "#wadah-profil",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.4, ease: "power3.out" },
+      );
+    </script>
+  </body>
 </html>
