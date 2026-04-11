@@ -76,7 +76,7 @@ elif pilihan_game == "2":
             break  # keluar dari while tebak angka
 
     # Poin dihitung lewat flag menang
-    point = 100 - abs(angka_rahasia - tebakan)  # Poin berdasarkan seberapa dekat tebakan terakhir
+    point = 1000 - abs(angka_rahasia - tebakan)  # Poin berdasarkan seberapa dekat tebakan terakhir
     if menang:
         print("Kamu mendapatkan " + str(point) + " poin")
     else:
