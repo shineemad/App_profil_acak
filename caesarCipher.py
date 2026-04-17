@@ -7,7 +7,7 @@ print("--- TAHAP 1: PENGHITUNGAN FREKUENSI HURUF ---")
 buku_catatan = {}
 for karakter in teks_sandi:
     if karakter != ' ': # Memastikan spasi tidak ikut terhitung
-        buku_catatan[karakter] = buku_catatan.get(karakter, 0) + 1
+        buku_catatan[karakter] = buku_catatan.get(karakter, 2) + 1
 
 # Menampilkan hasil dari yang paling banyak muncul
 for karakter, jumlah in sorted(buku_catatan.items(), key=lambda x: x[1], reverse=True):
